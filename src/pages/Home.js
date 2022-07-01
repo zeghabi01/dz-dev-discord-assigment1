@@ -104,7 +104,7 @@ function Home() {
 
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const {loadData,users,dispatch,fetch} = useData()
+  const {loadData,users,dispatch,fetch,setFetch} = useData()
 
   const handleOpen = (id) => {
     setId(null)
@@ -117,8 +117,10 @@ function Home() {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;
 
   useEffect(()=>{
-    if(fetch)
-    loadData()
+    if(fetch) {
+      loadData()
+      setFetch(false)
+    }
   },[fetch])
 
   const handleChangePage = (event,newPage) => {

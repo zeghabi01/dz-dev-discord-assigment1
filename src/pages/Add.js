@@ -13,8 +13,6 @@ function Add() {
 
   const {dispatch} = useData()
 
-  const {setFetch} = useData()
-
   const handleChange = (e) => {
     setNewUser({...newUser,[e.target.name] : e.target.value})
   }
@@ -26,7 +24,6 @@ function Add() {
       username : newUser.username,
       email : newUser.email
     }})
-   setFetch(false)
    navigate('/')
   }
 

@@ -6,6 +6,11 @@ function Edit() {
 
   const {id} = useParams()
 
+  React.useState(()=> {
+    if(id) {
+      
+    }
+  },[id])
 
   const handleEdit = () =>  {
       console.log('edit');
