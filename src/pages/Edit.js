@@ -18,8 +18,7 @@ function Edit() {
 
   React.useEffect(()=>{
     users.filter((item) => {
-
-      if(item.id === id) {
+      if(item.id == id) {
         console.log(item.id,id);
         setUser({
           name : item.name,
