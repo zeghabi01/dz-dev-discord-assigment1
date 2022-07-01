@@ -13,18 +13,20 @@ function Add() {
 
   const {dispatch} = useData()
 
+  const {setFetch} = useData()
+
   const handleChange = (e) => {
     setNewUser({...newUser,[e.target.name] : e.target.value})
   }
 
   const handleAddition = () => {
-    console.log(newUser);
     dispatch({type:'ADD_USER',payload:{
       id : uuidv4(),
       name :newUser.name,
       username : newUser.username,
       email : newUser.email
     }})
+   setFetch(false)
    navigate('/')
   }
 

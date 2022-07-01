@@ -28,6 +28,8 @@ function DataProvider({children}) {
 
     const [users, dispatch] = React.useReducer(reducer, []);
 
+    const [fetch,setFetch] = React.useState(true)
+
     const {token} = useAuthSystem()
 
     const loadData = async () => {
@@ -57,6 +59,8 @@ function DataProvider({children}) {
         loadData,
         dispatch,
         users,
+        fetch,
+        setFetch
     }
 
   return (
