@@ -6,23 +6,41 @@ function Edit() {
 
   const {id} = useParams()
 
-  React.useState(()=> {
-    if(id) {
-      
-    }
-  },[id])
+  const [user,setUser] = React.useState({})
 
-  const handleEdit = () =>  {
-      console.log('edit');
+  const navigate = useNavigate()
+
+  const {dispatch} = useData()
+
+  // const handleEdit = () =>  {
+
+  //   dispatch({type:'EDIT_USER',payload:{
+  //     id : id,
+  //     newUser : {
+  //       id : id,
+  //       name :user.name,
+  //       username : user.username,
+  //       email : user.email
+  //     }
+  //   }})
+
+  //  navigate('/')
+
+  // }
+
+  const handleChange = (e) => {
+    setUser({...user,[e.target.name] : e.target.value})
   }
+
 
   return (
     <>
-    <div>Edit</div>
-    <input  type={'text'} name='name' placeholder='name'></input>
-    <input  type={'text'} name='username' placeholder='username'></input>
-    <input  type={'email'} name='email' placeholder='email'></input>
-    <button onClick={handleEdit}>edit user</button>
+    <h1>EDIT</h1>
+    {/* <div>Edit</div>
+    <input  type={'text'} onChange={handleChange} name='name' placeholder='name'></input>
+    <input  type={'text'} onChange={handleChange} name='username' placeholder='username'></input>
+    <input  type={'email'} onChange={handleChange} name='email' placeholder='email'></input>
+    <button onClick={handleEdit}>edit user</button> */}
   </>
   )
 }
