@@ -1,5 +1,11 @@
 import React from 'react'
 import { useAuthSystem } from '../utils/AuthSystem'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
+
+
 function Login() {
 
   const [x,setX] = React.useState({email:'johndoe66@gmail.com',password:'somePassword'})
@@ -15,10 +21,12 @@ function Login() {
   
   return (
     <>
-      <input onChange={handleChange} type={'email'} name='email' placeholder='email' defaultValue={'johndoe66@gmail.com'}/>
-      <input onChange={handleChange} type={'password'} name='password' placeholder='password' defaultValue={'somePassword'}/>
-      <button onClick={handleSubmit}>Login</button>
-    </>
+      <Stack spacing={2}>
+        <TextField  onChange={handleChange} type={'email'}  defaultValue={'johndoe66@gmail.com'} id="outlined-basic" label="Email" variant="outlined" />
+        <TextField  onChange={handleChange} type={'password'} defaultValue={'somePassword'} id="outlined-basic" label="Password" variant="outlined" />
+        <Button onClick={handleSubmit} color='success' variant="contained">Login</Button>
+      </Stack>
+   </>
   )
 }
 

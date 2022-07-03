@@ -20,7 +20,6 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
 import Button from '@mui/material/Button';
 import { Container } from '@mui/material';
-import BasicModal from '../composants/Modal';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
@@ -116,12 +115,16 @@ function Home() {
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;
 
-  useEffect(()=>{
-    if(fetch) {
-      loadData()
-      setFetch(false)
-    }
-  },[fetch])
+  // useEffect(()=>{
+  //   if(fetch) {
+  //     loadData()
+  //     setFetch(false)
+  //   }
+  // },[fetch])
+
+  React.useEffect(()=>{
+    console.log(users);
+  },[users])
 
   const handleChangePage = (event,newPage) => {
     setPage(newPage);

@@ -13,9 +13,9 @@ const reducer = (state, action) => {
     switch (action.type) {
       case "INIT_USERS": return [...action.payload]
       case "ADD_USER": return [...state,action.payload] 
-      case "DELETE_USER": return state.filter((item)=> item.id != action.payload)
+      case "DELETE_USER": return state.filter((item)=> item.id !== action.payload)
       case "EDIT_USER": {
-        const index = state.findIndex((row) => row.id === action.payload.id);
+        const index = state.findIndex((row) => row.id.toString() === action.payload.id);
         state[index] = action.payload.newUser
         return [...state]
       }
@@ -31,6 +31,18 @@ function DataProvider({children}) {
     const [fetch,setFetch] = React.useState(true)
 
     const {token} = useAuthSystem()
+
+    React.useEffect(()=> {
+
+
+   
+      const fetchData = async () => {
+        if(fetch) await loadData()
+        setFetch(false)
+      }
+      fetchData()
+
+    },[fetch])
 
     const loadData = async () => {
         
