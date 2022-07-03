@@ -1,6 +1,9 @@
 import React from 'react'
 import { useData } from '../utils/DataProvider';
 import {useNavigate,useParams} from 'react-router-dom'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 function Edit() {
 
@@ -62,12 +65,12 @@ function Edit() {
 
   return (
     <>
-    <h1>EDIT</h1>
-    <div>Edit</div>
-    <input  type={'text'}  value={user.name} onChange={handleChange} name='name' placeholder='name'></input>
-    <input  type={'text'} value={user.username} onChange={handleChange} name='username' placeholder='username'></input>
-    <input  type={'email'} value={user.email} onChange={handleChange} name='email' placeholder='email'></input>
-    <button onClick={handleEdit}>edit user</button>
+    <Stack spacing={2}>
+        <TextField value={user.name} onChange={handleChange} type={'text'} name='name'   id="outlined-basic" label="Name" variant="outlined" />
+        <TextField value={user.username}  onChange={handleChange} type={'text'} name='username'  id="outlined-basic" label="Username" variant="outlined" />
+        <TextField value={user.email}  onChange={handleChange} type={'email'} name='email' id="outlined-basic" label="Email" variant="outlined" />
+        <Button onClick={handleEdit} color='success' variant="contained">Edit User</Button>
+    </Stack>
   </>
   )
 }

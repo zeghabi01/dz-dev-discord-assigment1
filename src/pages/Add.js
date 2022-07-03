@@ -1,8 +1,10 @@
 import React from 'react'
-import { useAuthSystem } from '../utils/AuthSystem'
 import { v4 as uuidv4 } from 'uuid';
 import { useData } from '../utils/DataProvider';
 import {useNavigate} from 'react-router-dom'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 
 function Add() {
@@ -28,13 +30,12 @@ function Add() {
   }
 
   return (
-    <>
-      <div>Add</div>
-      <input onChange={handleChange} type={'text'} name='name' placeholder='name'></input>
-      <input onChange={handleChange} type={'text'} name='username' placeholder='username'></input>
-      <input onChange={handleChange} type={'email'} name='email' placeholder='email'></input>
-      <button onClick={handleAddition}>add user</button>
-    </>
+      <Stack spacing={2}>
+        <TextField  onChange={handleChange} type={'text'} name='name'   id="outlined-basic" label="Name" variant="outlined" />
+        <TextField  onChange={handleChange} type={'text'} name='username'  id="outlined-basic" label="Username" variant="outlined" />
+        <TextField  onChange={handleChange} type={'email'} name='email' id="outlined-basic" label="Email" variant="outlined" />
+        <Button onClick={handleAddition} color='success' variant="contained">Add User</Button>
+      </Stack>
   )
 }
 

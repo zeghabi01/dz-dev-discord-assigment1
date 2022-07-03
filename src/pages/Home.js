@@ -105,6 +105,16 @@ function Home() {
 
   const {loadData,users,dispatch,fetch,setFetch} = useData()
 
+  React.useEffect(()=> {
+
+    const fetchData = async () => {
+      if(fetch) await loadData()
+      setFetch(false)
+    }
+    fetchData()
+
+  },[fetch])
+
   const handleOpen = (id) => {
     setId(null)
     setOpen(true)
@@ -114,17 +124,6 @@ function Home() {
   const handleClose = () => setOpen(false);
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;
-
-  // useEffect(()=>{
-  //   if(fetch) {
-  //     loadData()
-  //     setFetch(false)
-  //   }
-  // },[fetch])
-
-  React.useEffect(()=>{
-    console.log(users);
-  },[users])
 
   const handleChangePage = (event,newPage) => {
     setPage(newPage);

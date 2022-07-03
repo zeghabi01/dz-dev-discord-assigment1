@@ -32,18 +32,6 @@ function DataProvider({children}) {
 
     const {token} = useAuthSystem()
 
-    React.useEffect(()=> {
-
-
-   
-      const fetchData = async () => {
-        if(fetch) await loadData()
-        setFetch(false)
-      }
-      fetchData()
-
-    },[fetch])
-
     const loadData = async () => {
         
         const config = {
