@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAuthSystem } from './AuthSystem';
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid';
 
 const dataContext = React.createContext()
 

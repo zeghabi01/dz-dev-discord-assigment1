@@ -9,8 +9,6 @@ export function useAuthSystem() {
 
 function AuthSystem({children}) {
 
-  console.log('auth render');
-
   const [token,setToken] = React.useState(localStorage.getItem('token'))
   const [loading,setLoading] = React.useState(false)
 
