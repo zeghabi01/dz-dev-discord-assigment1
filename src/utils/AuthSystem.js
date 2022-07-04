@@ -24,7 +24,7 @@ function AuthSystem({children}) {
 
     try {
 
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`,body,config)
+      const res = await axios.post(`https://dz-dev-discord-assigment1-api.herokuapp.com/login`,body,config)
 
       setToken(res.data.token)
 

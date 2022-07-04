@@ -42,7 +42,7 @@ function DataProvider({children}) {
 
         try {
 
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/data`,config)
+        const res = await axios.get(`https://dz-dev-discord-assigment1-api.herokuapp.com/data`,config)
 
         dispatch({type:'INIT_USERS',payload:res.data})
 
