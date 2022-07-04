@@ -5,38 +5,83 @@ import {useNavigate} from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import * as Yup from 'yup';
+import { useFormik, Form, FormikProvider } from 'formik';
 
 
 function Add() {
-
-  const [newUser,setNewUser] = React.useState({})
 
   const navigate = useNavigate()
 
   const {dispatch} = useData()
 
-  const handleChange = (e) => {
-    setNewUser({...newUser,[e.target.name] : e.target.value})
-  }
+  const AddSchema = Yup.object().shape({
+    name: Yup.string().required('Name is Required'),
+    username: Yup.string().required('Username is required'),
+    email : Yup.string().email().required('Email is Required'),
+  }) 
 
-  const handleAddition = () => {
-    dispatch({type:'ADD_USER',payload:{
-      id : uuidv4(),
-      name :newUser.name,
-      username : newUser.username,
-      email : newUser.email
-    }})
-   navigate('/')
-  }
+  const formik = useFormik({
+    initialValues : {
+      name : '',
+      username : '',
+      email : ''
+    },
+    validationSchema : AddSchema,
+    onSubmit : () => {
+      const {name,username,email} = values;
+      dispatch({type:'ADD_USER',payload:{
+        id : uuidv4(),
+        name :name,
+        username : username,
+        email : email
+      }})
+      navigate('/')
+    }
+  })
+
+
+  const {errors,touched, values, handleSubmit, getFieldProps} = formik;
+
 
   return (
-      <Stack spacing={2}>
-        <TextField  onChange={handleChange} type={'text'} name='name'   id="outlined-basic" label="Name" variant="outlined" />
-        <TextField  onChange={handleChange} type={'text'} name='username'  id="outlined-basic" label="Username" variant="outlined" />
-        <TextField  onChange={handleChange} type={'email'} name='email' id="outlined-basic" label="Email" variant="outlined" />
-        <Button onClick={handleAddition} color='success' variant="contained">Add User</Button>
-      </Stack>
-  )
+    <FormikProvider value={formik}>
+      <Form noValidate onSubmit={handleSubmit}>
+        <Stack spacing={2}>
+          <TextField
+            type={"text"}
+            id="outlined-basic"
+            label="Name"
+            variant="outlined"
+            {...getFieldProps("name")}
+            error={Boolean(touched.name && errors.name)}
+            helperText={touched.name && errors.name}
+          />
+          <TextField
+            type={"text"}
+            id="outlined-basic"
+            label="Username"
+            variant="outlined"
+            {...getFieldProps("username")}
+            error={Boolean(touched.username && errors.username)}
+            helperText={touched.username && errors.username}
+          />
+          <TextField
+            type={"email"}
+            id="outlined-basic"
+            label="Email"
+            variant="outlined"
+            {...getFieldProps("email")}
+            error={Boolean(touched.email && errors.email)}
+            helperText={touched.email && errors.email}
+          />
+          <Button type='submit' color="success" variant="contained">
+            Add User
+          </Button>
+        </Stack>
+      </Form>
+    </FormikProvider>
+  );
 }
 
 export default Add
